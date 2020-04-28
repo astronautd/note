@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.whc.noteserver.dao.UserDao">
+	<select id="login" parameterType="com.whc.noteserver.entity.User" resultType="com.whc.noteserver.entity.User">
+		select * from note_t_users where username=#{username} and password=#{password}
+	</select>
+	
+	<select id="getUserByUserName" parameterType="com.whc.noteserver.entity.User" resultType="com.whc.noteserver.entity.User">
+		select * from note_t_users where username=#{username}
+	</select>
+	
+	<insert id="addUser" parameterType="com.whc.noteserver.entity.User">
+	    insert into note_t_users (id,username,password,name,age) values(#{id},#{username},#{password},#{name},#{age})
+	</insert>
+	
+	
+</mapper>

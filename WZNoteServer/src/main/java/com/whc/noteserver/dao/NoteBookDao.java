@@ -3,14 +3,21 @@ package com.whc.noteserver.dao;
 import java.util.List;
 
 import com.whc.noteserver.entity.NoteBook;
+import com.whc.noteserver.param.NoteBookParam;
 
 public interface NoteBookDao {
+	
+	/**
+	 * 获取记录数
+	 * @return
+	 */
+	public int getCount();
 	
 	/**
 	 * 获取笔记本信息
 	 * @return
 	 */
-	public List<NoteBook> getNoteBook();
+	public List<NoteBook> getNoteBook(NoteBookParam param);
 	
 	/**
 	 * 添加笔记本信息

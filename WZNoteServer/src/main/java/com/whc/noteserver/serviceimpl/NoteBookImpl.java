@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.whc.noteserver.dao.NoteBookDao;
 import com.whc.noteserver.entity.NoteBook;
+import com.whc.noteserver.param.NoteBookParam;
 import com.whc.noteserver.service.NoteBookService;
 
 @Service
@@ -15,12 +16,16 @@ public class NoteBookImpl implements NoteBookService{
 	@Autowired
 	NoteBookDao noteBookDao;
 	
+	public int getCount() {
+		return noteBookDao.getCount();
+	};
+	
 	/**
 	 * 获取笔记本信息
 	 * @return
 	 */
-	public List<NoteBook> getNoteBook() {
-		return noteBookDao.getNoteBook();
+	public List<NoteBook> getNoteBook(NoteBookParam param) {
+		return noteBookDao.getNoteBook(param);
 	}
 
 	/**

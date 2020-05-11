@@ -5,14 +5,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.whc.noteserver.entity.NoteBook;
+import com.whc.noteserver.param.NoteBookParam;
 
 public interface NoteBookService {
+	
+	public int getCount();
 	
 	/**
 	 * 获取笔记本信息
 	 * @return
 	 */
-	public List<NoteBook> getNoteBook();
+	public List<NoteBook> getNoteBook(NoteBookParam param);
 	
 	/**
 	 * 添加笔记本信息

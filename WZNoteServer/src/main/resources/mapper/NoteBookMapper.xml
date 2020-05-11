@@ -3,9 +3,13 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  
 <mapper namespace="com.whc.noteserver.dao.NoteBookDao">
+
+    <select id="getCount" resultType="Integer">
+        select count(*) from note_t_notebooks
+    </select>
 	
 	<select id="getNoteBook" parameterType="com.whc.noteserver.entity.NoteBook" resultType="com.whc.noteserver.entity.NoteBook">
-		select id,name,addtime,isdelete,userid from note_t_notebooks
+		select id,name,addtime,isdelete,userid from note_t_notebooks order by addtime desc limit #{page},#{limit}
 	</select>
 	
 	<insert id="addNoteBook" parameterType="com.whc.noteserver.entity.NoteBook">

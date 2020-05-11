@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.whc.noteserver.entity.NoteBook;
+import com.whc.noteserver.param.NoteBookParam;
+import com.whc.noteserver.result.LayPage;
 import com.whc.noteserver.service.NoteBookService;
 import com.whc.noteserver.util.JsonResult;
 
@@ -22,9 +24,17 @@ public class NoteBookController {
 	 */
 	@RequestMapping("/getnotebook")
 	@ResponseBody
-	public JsonResult getNoteBook() {
-		List<NoteBook> list = noteBookService.getNoteBook();
-		return new JsonResult(JsonResult.STATE_SUCCESS,"",list);
+	public JsonResult getNoteBook(NoteBookParam param) {
+		param.setPage((param.getPage()-1)*param.getLimit());
+		//System.out.println("page:"+page+" limit:"+limit);
+		List<NoteBook> list = noteBookService.getNoteBook(param);
+		int count = noteBookService.getCount();
+		//构建一个对象
+		LayPage lp = new LayPage();
+		lp.setCount(count);
+		lp.setList(list);
+		
+		return new JsonResult(JsonResult.STATE_SUCCESS,"",lp);
 	}
 	
 	/**

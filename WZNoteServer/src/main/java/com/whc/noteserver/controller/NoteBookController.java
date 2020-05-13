@@ -46,6 +46,9 @@ public class NoteBookController {
 	@ResponseBody
 	public JsonResult addNoteBook(NoteBook noteBook) {
 		noteBook.setId(UUID.randomUUID().toString());
+		noteBook.setAddtime(System.currentTimeMillis());
+		noteBook.setIsdelete(0);
+		noteBook.setUserid("123");
 		int result = noteBookService.addNoteBook(noteBook);
 		if (result==1) {
 			return new JsonResult(JsonResult.STATE_SUCCESS,"Ìí¼Ó³É¹¦",null);

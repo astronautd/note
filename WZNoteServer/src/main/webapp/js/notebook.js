@@ -24,7 +24,7 @@ layui.use(['laypage', 'layer', 'table','jquery'], function(){
       {type: 'checkbox', fixed: 'left'}
       ,{field: 'id', title: 'ID',hide:'true'}
       ,{field: 'name', title: '笔记本名称'}
-      ,{field: 'addtime', title: '添加时间',templet:'<div>{{layui.util.toDateString(d.addtime*1000)}}</div>'}
+      ,{field: 'addtime', title: '添加时间',templet:'<div>{{layui.util.toDateString(d.addtime)}}</div>'}
       ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
     ]]
   });

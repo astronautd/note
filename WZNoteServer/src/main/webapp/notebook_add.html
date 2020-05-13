@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加笔记本</title>
+<link rel="stylesheet" href="./layui/css/layui.css" media="all">
+  <style>
+    body{margin: 10px;}
+    .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+  </style>
+</head>
+<body>
+<div>
+    <label class="layui-form-label">笔记本名称：
+    </label>
+    <div class="layui-input-block">
+        <input type="text" id="name" name="name" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input" style="width: 200px">
+    </div>
+        <button id="addnotebook" type="button" class="layui-btn layui-btn-normal" style="margin-left: 112px;margin-top: 20px">确定</button>
+</div>
+
+<script src="./layui/layui.js"></script>
+<script src="./js/notebook_add.js"></script>
+</body>
+</html>

@@ -29,47 +29,69 @@ layui.use(['laypage', 'layer', 'table','jquery'], function(){
     ]]
   });
   
-  //监听头工具栏事件
-  table.on('toolbar(test)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id)
-    ,data = checkStatus.data; //获取选中的数据
-    switch(obj.event){
-      case 'add':
-        layer.msg('添加');
-      break;
-      case 'update':
-        if(data.length === 0){
-          layer.msg('请选择一行');
-        } else if(data.length > 1){
-          layer.msg('只能同时编辑一个');
-        } else {
-          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
-        }
-      break;
-      case 'delete':
-        if(data.length === 0){
-          layer.msg('请选择一行');
-        } else {
-          layer.msg('删除');
-        }
-      break;
-    };
-  });
-  
   //监听行工具事件
   table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
     var data = obj.data //获得当前行数据
     ,layEvent = obj.event; //获得 lay-event 对应的值
-    if(layEvent === 'detail'){
-      layer.msg('查看操作');
-    } else if(layEvent === 'del'){
-      layer.confirm('真的删除行么', function(index){
-        obj.del(); //删除对应行（tr）的DOM结构
+    if(layEvent === 'del'){
+      layer.confirm('真的删除吗？', function(index){
+        //obj.del(); //删除对应行（tr）的DOM结构
+    	  var sendData={"id":data.id};
+  		$.ajax({
+  			type:"get",
+  			url:"notebook/deletenotebook.do",
+  			data:sendData,
+  			datatype:"json",
+  			success:function(msg){
+  				if (msg.state==1) {
+  					//删除成功
+  					layer.msg(msg.message);
+  					//重新刷新表格
+  					table.reload('demo', {
+  	  				  page: {
+  	  				    curr: 1 //重新从第 1 页开始
+  	  				  }
+  	  				}); //只重载数据
+  	  			  layer.close(index)
+  	  			  /*if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+  	  			    layer.close(index)
+  	  			  }*/
+  	  			  return false; 
+  				}else {
+  					//删除失败
+  					layer.msg(msg.message);
+  				}
+  			},
+  			error:function(msg){
+  				alert("通信失败");
+  			}
+  			
+  		});
+    	  
+    	  
         layer.close(index);
         //向服务端发送删除指令
       });
     } else if(layEvent === 'edit'){
-      layer.msg('编辑操作');
+    	layer.open({
+  		  area: ['500px', '300px'],
+  		  shadeClose:true,
+  		  anim:1,
+  		  type: 2, 
+  		  content: 'notebook_edit.html?id='+data.id, //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+  		  cancel: function(index, layero){ 
+  			  table.reload('demo', {
+  				  page: {
+  				    curr: 1 //重新从第 1 页开始
+  				  }
+  				}); //只重载数据
+  			  layer.close(index)
+  			  /*if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+  			    layer.close(index)
+  			  }*/
+  			  return false; 
+  			}    
+  	  });
     }
   });
  
@@ -96,8 +118,20 @@ layui.use(['laypage', 'layer', 'table','jquery'], function(){
 		  shadeClose:true,
 		  anim:1,
 		  type: 2, 
-		  content: 'notebook_add.html' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-		});
+		  content: 'notebook_add.html', //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+		  cancel: function(index, layero){ 
+			  table.reload('demo', {
+				  page: {
+				    curr: 1 //重新从第 1 页开始
+				  }
+				}); //只重载数据
+			  layer.close(index)
+			  /*if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+			    layer.close(index)
+			  }*/
+			  return false; 
+			}    
+	  });
   })
   
   

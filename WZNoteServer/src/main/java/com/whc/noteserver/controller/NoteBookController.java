@@ -79,6 +79,7 @@ public class NoteBookController {
 	@RequestMapping("/updatenotebook")
 	@ResponseBody
 	public JsonResult updateNoteBook(NoteBook noteBook) {
+		//noteBook.setIsdelete(1);
 		int result = noteBookService.updateNoteBook(noteBook);
 		if (result==1) {
 			return new JsonResult(JsonResult.STATE_SUCCESS,"ÐÞ¸Ä³É¹¦",null);

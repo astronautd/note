@@ -36,8 +36,10 @@ $(function(){
 				console.log(objmsg.result); */
 				/* alert(msg); */
 				if (msg.state==1) {
+					//登录成功
 					console.log(msg.data.name);
-					alert("欢迎"+msg.data.name);
+					//alert("欢迎"+msg.data.name);
+					window.location.href = "main.html";
 				}else {
 					//登录失败
 					alert(msg.message);

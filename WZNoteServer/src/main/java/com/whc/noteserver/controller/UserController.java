@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +35,7 @@ public class UserController {
 
 	@RequestMapping("/login") // 方法的映射路径
 	@ResponseBody // 将返回信息输送到网页端
-	public Object login(User user) {
+	public Object login(User user,HttpSession session) {
 		// System.out.println(user.toString());
 		// userService.login(user);
 		logger.debug("登录：" + user.getUsername());
@@ -48,6 +51,7 @@ public class UserController {
 
 		JsonResult jsonResult;
 		if (userResult != null) {
+			session.setAttribute("id", userResult.getId());
 			jsonResult = new JsonResult(JsonResult.STATE_SUCCESS, "", userResult);
 		} else {
 			jsonResult = new JsonResult(JsonResult.STATE_ERROR, "用户名或密码错误", null);

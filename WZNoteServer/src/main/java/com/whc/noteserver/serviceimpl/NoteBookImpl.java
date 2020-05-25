@@ -16,8 +16,8 @@ public class NoteBookImpl implements NoteBookService{
 	@Autowired
 	NoteBookDao noteBookDao;
 	
-	public int getCount() {
-		return noteBookDao.getCount();
+	public int getCount(NoteBookParam param) {
+		return noteBookDao.getCount(param);
 	};
 	
 	/**

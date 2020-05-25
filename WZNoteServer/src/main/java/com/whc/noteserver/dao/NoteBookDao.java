@@ -11,7 +11,7 @@ public interface NoteBookDao {
 	 * 获取记录数
 	 * @return
 	 */
-	public int getCount();
+	public int getCount(NoteBookParam param);
 	
 	/**
 	 * 获取笔记本信息

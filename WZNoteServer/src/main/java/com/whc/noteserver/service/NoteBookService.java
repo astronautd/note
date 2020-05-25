@@ -9,7 +9,7 @@ import com.whc.noteserver.param.NoteBookParam;
 
 public interface NoteBookService {
 	
-	public int getCount();
+	public int getCount(NoteBookParam param);
 	
 	/**
 	 * 获取笔记本信息

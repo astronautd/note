@@ -2,6 +2,8 @@ package com.whc.noteserver.controller;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +31,7 @@ public class NoteBookController {
 		param.setPage((param.getPage()-1)*param.getLimit());
 		//System.out.println("page:"+page+" limit:"+limit);
 		List<NoteBook> list = noteBookService.getNoteBook(param);
-		int count = noteBookService.getCount();
+		int count = noteBookService.getCount(param);
 		//构建一个对象
 		LayPage lp = new LayPage();
 		lp.setCount(count);
@@ -48,7 +50,7 @@ public class NoteBookController {
 		noteBook.setId(UUID.randomUUID().toString());
 		noteBook.setAddtime(System.currentTimeMillis());
 		noteBook.setIsdelete(0);
-		noteBook.setUserid("123");
+		//noteBook.setUserid();
 		int result = noteBookService.addNoteBook(noteBook);
 		if (result==1) {
 			return new JsonResult(JsonResult.STATE_SUCCESS,"添加成功",null);

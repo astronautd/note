@@ -10,6 +10,7 @@ layui.use(['laypage', 'layer', 'table','jquery'], function(){
     ,url: 'notebook/getnotebook.do' //数据接口
     ,title: '笔记本表'
     ,page: true //开启分页
+    ,where: {userid: getCookie("userid")}
     ,toolbar: 'true' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
     ,totalRow: true //开启合计行
     ,parseData: function(res){ //res 即为原始返回的数据

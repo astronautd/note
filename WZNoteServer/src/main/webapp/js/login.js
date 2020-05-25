@@ -38,6 +38,7 @@ $(function(){
 				if (msg.state==1) {
 					//登录成功
 					console.log(msg.data.name);
+					SetCookie("userid",msg.data.id);
 					//alert("欢迎"+msg.data.name);
 					window.location.href = "main.html";
 				}else {

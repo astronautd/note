@@ -10,7 +10,7 @@ layui.use(['layer', 'jquery'], function(){
 		  layer.msg("不能为空");
 		  return;
 	  }
-	  var sendData={"name":$('#name').val()};
+	  var sendData={"name":$('#name').val(),"userid":getCookie("userid")};
 		$.ajax({
 			type:"get",
 			url:"notebook/addnotebook.do",

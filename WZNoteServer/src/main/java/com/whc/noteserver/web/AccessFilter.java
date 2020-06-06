@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AccessFilter implements Filter{
+public class AccessFilter implements Filter {
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		HttpServletResponse res = (HttpServletResponse)response;
-		HttpServletRequest req = (HttpServletRequest)request;
+		HttpServletResponse res = (HttpServletResponse) response;
+		HttpServletRequest req = (HttpServletRequest) request;
 		String path = req.getRequestURI();
 		System.out.println(path);
 		if (path.endsWith("login.html") || path.endsWith("register.html")) {
@@ -33,11 +33,11 @@ public class AccessFilter implements Filter{
 		}
 		HttpSession session = req.getSession();
 		Object id = session.getAttribute("id");
-		if (id==null) {
-			//System.out.println("用户没有登录");
+		if (id == null) {
+			// System.out.println("用户没有登录");
 			String contextPath = req.getContextPath();
-			//System.out.println("contextPath:"+contextPath);
-			res.sendRedirect(contextPath+"/login.html");
+			// System.out.println("contextPath:"+contextPath);
+			res.sendRedirect(contextPath + "/login.html");
 			return;
 		}
 		chain.doFilter(request, response);
@@ -46,7 +46,7 @@ public class AccessFilter implements Filter{
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

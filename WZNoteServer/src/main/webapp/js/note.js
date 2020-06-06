@@ -1,3 +1,4 @@
+
 layui.use(['laypage', 'layer', 'table','jquery'], function(){
   var laypage = layui.laypage //分页
   ,layer = layui.layer //弹层

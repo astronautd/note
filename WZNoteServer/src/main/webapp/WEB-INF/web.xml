@@ -23,27 +23,27 @@
   	<!-- 拦截所有.do结尾的访问 -->
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
-    <!-- log4j配置 -->
-    <context-param>  
-        <param-name>log4jConfiguration</param-name>  
-        <param-value>classpath:conf/log4j2.xml</param-value>  
-    </context-param>  
 
-    <listener>
-        <listener-class>
-        org.apache.logging.log4j.web.Log4jServletContextListener
-        </listener-class>
-    </listener>
-    
-    <filter>
-        <filter-name>AccessFilter</filter-name>
-        <filter-class>com.whc.noteserver.web.AccessFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AccessFilter</filter-name>
-        <url-pattern>*.html</url-pattern>
-    </filter-mapping>
+  <!-- log4j配置 -->
+	<context-param>  
+	    <param-name>log4jConfiguration</param-name>  
+	    <param-value>classpath:conf/log4j2.xml</param-value>  
+	</context-param>  
+	
+	<listener>
+	    <listener-class>
+	    org.apache.logging.log4j.web.Log4jServletContextListener
+	    </listener-class>
+	</listener>
+	
+	<filter>
+		<filter-name>AccessFilter</filter-name>
+		<filter-class>com.whc.noteserver.web.AccessFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AccessFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
 
-  
+
 </web-app>

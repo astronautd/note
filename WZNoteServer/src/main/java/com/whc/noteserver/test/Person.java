@@ -5,10 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Person {
-	
+
 	private String personName;
-	
-	
+
 	/*
 	 * public void setFanDian(FanDian fanDian) { this.fanDian = fanDian; }
 	 */
@@ -17,10 +16,9 @@ public class Person {
 		this.personName = personName;
 	}
 
-
 	public void say() {
 		System.out.println(personName);
 		System.out.println("ÎÒÒªµã²Ë");
-		//fanDian.say();
+		// fanDian.say();
 	}
 }

@@ -35,7 +35,7 @@ public class UserController {
 
 	@RequestMapping("/login") // 方法的映射路径
 	@ResponseBody // 将返回信息输送到网页端
-	public Object login(User user,HttpSession session) {
+	public Object login(User user, HttpSession session) {
 		// System.out.println(user.toString());
 		// userService.login(user);
 		logger.debug("登录：" + user.getUsername());
@@ -45,7 +45,7 @@ public class UserController {
 			user.setPassword(MD5.md5(user.getPassword(), "helloworld"));
 		} catch (Exception e) {
 //			e.printStackTrace(); 
-			logger.error("MD5加密",e);
+			logger.error("MD5加密", e);
 		}
 		User userResult = userService.login(user);
 

@@ -1,4 +1,5 @@
 package com.whc.noteserver.controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import com.whc.noteserver.util.JsonResult;
 @Controller // 注解，组件扫描加入到spring容器中
 @RequestMapping("/demo") // 类controller的映射路径
 public class TestController {
-	
+
 	@RequestMapping("/table")
 	@ResponseBody
 	public String getNoteBook() {

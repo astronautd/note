@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.whc.noteserver.dao.ReNoteDao">
+
+	<select id="getCount" resultType="Integer" parameterType="com.whc.noteserver.param.ReNoteParam">
+		select count(*) 
+		from note_t_notes notes,note_t_notebooks notebooks 
+		where notebooks.id=notes.notebookid and notebooks.isdelete=0 and notes.isdelete=1 and notebooks.userid=#{userid}
+	</select>
+	
+	<select id="getDelNote" resultType="com.whc.noteserver.result.DelNoteResult">
+		select notes.id,notes.content,notes.name,notes.addtime,notes.isdelete,notebooks.name as "notebooksname" 
+		from note_t_notes notes,note_t_notebooks notebooks 
+		where notebooks.id=notes.notebookid and notebooks.isdelete=0 and notes.isdelete=1 and notebooks.userid=#{userid} 
+		order by addtime desc limit #{page},#{limit} 
+	</select>
+	
+	<update id="reNote" parameterType="com.whc.noteserver.entity.ReNote">
+		update note_t_notes set isdelete=0 where id=#{id}
+	</update>
+	
+	<delete id="deleteNote" parameterType="com.whc.noteserver.entity.ReNote">
+		delete from note_t_notes where id=#{id}
+	</delete>
+	
+</mapper>

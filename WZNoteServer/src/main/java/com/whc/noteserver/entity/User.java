@@ -5,6 +5,11 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	private String id;
+	private String username; // 用户名
+	private String password;// 密码
+	private int age;// 年龄
+	private String name;// 姓名
+
 
 	public String getId() {
 		return id;
@@ -13,12 +18,7 @@ public class User implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	private String username; // 用户名
-	private String password;// 密码
-	private int age;// 年龄
-	private String name;// 姓名
-
+	
 	public String getUsername() {
 		return username;
 	}

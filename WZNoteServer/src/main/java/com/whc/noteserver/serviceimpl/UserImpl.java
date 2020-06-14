@@ -39,5 +39,17 @@ public class UserImpl implements UserService {
 	public int addUser(User user) {
 		return userDao.addUser(user);
 	}
+	
+	public int updateUser(User user) {
+		return userDao.updateUser(user);
+	}
+	
+	public User getUserByID(User user) {
+		List<User> list=userDao.getUserByID(user);
+		if(list==null || list.isEmpty()) {
+			return null;
+		}
+		return list.get(0);
+	}
 
 }

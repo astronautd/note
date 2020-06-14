@@ -26,5 +26,19 @@ public interface UserService {
 	 * @return 1
 	 */
 	public int addUser(User user);
+	
+	/**
+	 * 更新用户信息
+	 * @param user 前台传入的user
+	 * @return 1
+	 */
+	public int updateUser(User user);
+	
+	/**
+	 * 根据id获取用户信息
+	 * @param user
+	 * @return
+	 */
+	public User getUserByID(User user);
 
 }

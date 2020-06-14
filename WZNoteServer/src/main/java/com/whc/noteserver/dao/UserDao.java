@@ -22,4 +22,18 @@ public interface UserDao {
 	 * @return 1
 	 */
 	public int addUser(User user);
+	
+	/**
+	 * 更新用户信息
+	 * @param user 从前台传入的user
+	 * @return
+	 */
+	public int updateUser(User user);
+	
+	/**
+	 * 根据id获取用户信息
+	 * @param user
+	 * @return
+	 */
+	public List<User> getUserByID(User user);
 }

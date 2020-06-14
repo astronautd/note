@@ -47,9 +47,9 @@ public class ReNoteImpl implements ReNoteService {
 	}
 	
 	/**
-	 * É¾³ý±Ê¼Ç
+	 * ³¹µ×É¾³ý±Ê¼Ç
 	 * 
-	 * @param note ÒªÉ¾³ýµÄ±Ê¼Ç
+	 * @param note Òª³¹µ×É¾³ýµÄ±Ê¼Ç
 	 * @return
 	 */
 	public int deleteNote(ReNote note) {

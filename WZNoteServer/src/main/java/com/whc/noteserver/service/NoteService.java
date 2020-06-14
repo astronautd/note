@@ -20,7 +20,7 @@ public interface NoteService {
 	/**
 	 * 添加笔记信息
 	 * 
-	 * @param Note 要添加的笔记本
+	 * @param Note 要添加的笔记
 	 * @return
 	 */
 	public int addNote(Note note);
@@ -36,7 +36,7 @@ public interface NoteService {
 	/**
 	 * 更新笔记信息
 	 * 
-	 * @param Note 要更新的笔记本
+	 * @param Note 要更新的笔记
 	 * @return
 	 */
 	public int updateNote(Note note);
@@ -44,7 +44,7 @@ public interface NoteService {
 	/**
 	 * 删除笔记
 	 * 
-	 * @param Note 要删除的笔记本
+	 * @param Note 要删除的笔记
 	 * @return
 	 */
 	public int deleteNote(Note note);

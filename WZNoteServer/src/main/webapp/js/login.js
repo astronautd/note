@@ -43,6 +43,7 @@ $(function() {
 					console.log(msg.data.name);
 					SetCookie("userid", msg.data.id);
 					// alert("欢迎"+msg.data.name);
+					//$('#uname').text(msg.data.name);
 					window.location.href = "main.html";
 				} else {
 					// 登录失败

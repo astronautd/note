@@ -94,5 +94,46 @@ public class UserController {
 
 		return jsonResult;
 	}
+	
+	/**
+	 * 根据用户id获取用户信息
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/getuserbyid")
+	@ResponseBody
+	public Object getuserbyid(User user) {
+		JsonResult jsonResult=null;
+		//第3题，补充调用方法
+		User userRe=userService.getUserByID(user);
+		jsonResult=new JsonResult(JsonResult.STATE_SUCCESS,"",userRe);
+		return jsonResult;
+		
+	}
+	
+	/**
+	 * 更新用户注册信息
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/updateUser")  //第4题，补充映射路径
+	@ResponseBody
+	public Object updateRegister(User user) {
+		JsonResult jsonResult=null;
+		
+		//更新用户信息
+		int result=userService.updateUser(user);
+
+		if(result==1) {
+				//更新成功
+			jsonResult=new JsonResult(JsonResult.STATE_SUCCESS,"更新成功",null);
+		}else {
+				//更新失败
+			jsonResult=new JsonResult(JsonResult.STATE_ERROR,"更新失败",null);
+		}	
+
+		return jsonResult;
+		
+	}
 
 }

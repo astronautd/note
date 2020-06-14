@@ -29,9 +29,9 @@ public interface ReNoteService {
 	public int reNote(ReNote note);
 	
 	/**
-	 * É¾³ý±Ê¼Ç
+	 * ³¹µ×É¾³ý±Ê¼Ç
 	 * 
-	 * @param Note ÒªÉ¾³ýµÄ±Ê¼Ç
+	 * @param Note Òª³¹µ×É¾³ýµÄ±Ê¼Ç
 	 * @return
 	 */
 	public int deleteNote(ReNote note);

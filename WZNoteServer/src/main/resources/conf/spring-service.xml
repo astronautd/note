@@ -36,5 +36,7 @@
 	<!-- 启动注解版的Spring MVC -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 
+   <!--  启动基于注解的aop -->
+   <aop:aspectj-autoproxy />
 	
 </beans>

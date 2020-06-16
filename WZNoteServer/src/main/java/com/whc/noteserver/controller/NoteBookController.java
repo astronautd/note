@@ -45,7 +45,7 @@ public class NoteBookController {
 	}
 
 	/**
-	 * 根据用户id获取被击毙信息
+	 * 根据用户id获取笔记本信息
 	 * 
 	 * @param param
 	 * @return

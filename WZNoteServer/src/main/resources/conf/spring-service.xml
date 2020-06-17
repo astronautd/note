@@ -38,5 +38,10 @@
 
    <!--  启动基于注解的aop -->
    <aop:aspectj-autoproxy />
+   
+   <!-- 配置文件上传解析器 -->
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
 	
 </beans>

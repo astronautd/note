@@ -50,8 +50,9 @@ public class FileController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		return new JsonResult(JsonResult.STATE_SUCCESS,"上传成功",null);
+		
+		
 	}
 	
 	@RequestMapping("/download")

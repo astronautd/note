@@ -1,11 +1,14 @@
 package com.whc.noteserver.serviceimpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.whc.noteserver.dao.JFDao;
 import com.whc.noteserver.dao.UserDao;
+import com.whc.noteserver.entity.JF;
 import com.whc.noteserver.entity.User;
 import com.whc.noteserver.service.UserService;
 
@@ -14,6 +17,9 @@ public class UserImpl implements UserService {
 
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	JFDao jfDao;
 
 	public User login(User user) {
 //		System.out.println(user);
@@ -37,6 +43,12 @@ public class UserImpl implements UserService {
 	}
 
 	public int addUser(User user) {
+		JF jf = new JF();
+		jf.setId(UUID.randomUUID().toString());
+		jf.setJf(5);
+		jf.setUser_id(user.getId());
+		int re = jfDao.addJF(jf);
+		System.out.println("添加积分返回值："+re);
 		return userDao.addUser(user);
 	}
 	

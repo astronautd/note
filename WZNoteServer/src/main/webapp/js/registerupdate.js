@@ -9,7 +9,7 @@ layui.use([ 'layer','jquery'], function(){
 		$.ajax({
 			type:"post",
 			//第1题，补充url路径
-			url:"user/updateUser.do",
+			url:"user/getUserByID.do",
 			data:sendData,
 			datatype:"json",
 			success:function(msg){
@@ -42,7 +42,7 @@ layui.use([ 'layer','jquery'], function(){
 			var sendData={"age":$('#age').val()};
 			$.ajax({
 				type:"post",
-				url:"user/updateregister.do",
+				url:"user/updateUser.do",
 				data:sendData,
 				datatype:"json",
 				success:function(msg){

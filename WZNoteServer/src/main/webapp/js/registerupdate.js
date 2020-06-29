@@ -9,7 +9,7 @@ layui.use([ 'layer','jquery'], function(){
 		$.ajax({
 			type:"post",
 			//第1题，补充url路径
-			url:"user/getUserByID.do",
+			url:"user/getuserbyid.do",
 			data:sendData,
 			datatype:"json",
 			success:function(msg){

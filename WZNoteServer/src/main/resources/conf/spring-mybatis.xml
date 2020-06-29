@@ -41,5 +41,13 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.whc.noteserver.dao"></property>
 	</bean>
+	
+	<!-- 配置Mapper接口组件扫描 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="basePackage" value="com.whc.noteserver.dao"></property>
+	</bean>
+	
+	<!-- 注册事务注解驱动 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
      
 </beans>

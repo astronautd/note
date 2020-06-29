@@ -15,12 +15,12 @@
 	    insert into note_t_users (id,username,password,name,age) values(#{id},#{username},#{password},#{name},#{age})
 	</insert>
 	
-	<select id="getuserbyid" parameterType="com.whc.noteserver.entity.User" resultType="com.whc.noteserver.entity.User">
+	<select id="getUserByID" parameterType="com.whc.noteserver.entity.User" resultType="com.whc.noteserver.entity.User">
 		select * from note_t_users where id=#{id}
 	</select>
 	
 	<update id="updateUser" parameterType="com.whc.noteserver.entity.User">
-		update note_t_users set age=#{age} where id=#{id}
+		update note_t_users set name=#{name},age=#{age} where id=#{id}
 	</update>
 	
 </mapper>

@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.whc.noteserver.dao.JFDao;
 import com.whc.noteserver.dao.UserDao;
@@ -42,12 +44,14 @@ public class UserImpl implements UserService {
 		return list.get(0);
 	}
 
+	@Transactional
 	public int addUser(User user) {
 		JF jf = new JF();
 		jf.setId(UUID.randomUUID().toString());
 		jf.setJf(5);
 		jf.setUser_id(user.getId());
 		int re = jfDao.addJF(jf);
+		
 		System.out.println("添加积分返回值："+re);
 		return userDao.addUser(user);
 	}

@@ -14,9 +14,13 @@ import com.whc.noteserver.service.NoteService;
 
 @Service
 public class NoteImpl implements NoteService {
-
+	
 	@Autowired
 	NoteDao noteDao;
+	
+	public List<NoteResult> getNoteForeach(List<String> id){
+		return noteDao.getNoteForeach(id);
+	}
 
 	public int getCount(NoteParam param) {
 		return noteDao.getCount(param);

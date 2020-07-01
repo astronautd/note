@@ -23,7 +23,7 @@
 	 <!-- 读取配置文件 -->
 	<util:properties id="jdbc" location="classpath:conf/jdbc.properties"></util:properties>
 	<!-- 配置数据库连接池 -->
-	<bean id="dataSouce" class="org.apache.commons.dbcp2.BasicDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="#{jdbc.driver}"></property>
 		<property name="password" value="#{jdbc.password}"></property>
 		<property name="url" value="#{jdbc.url}"></property>
@@ -33,7 +33,7 @@
 	
 	<!-- 创建sqlsession会话，用于操作数据库 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSouce"></property>
+		<property name="dataSource" ref="dataSource"></property>
 		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
 	</bean>
 	
@@ -42,9 +42,9 @@
 		<property name="basePackage" value="com.whc.noteserver.dao"></property>
 	</bean>
 	
-	<!-- 配置Mapper接口组件扫描 -->
+	<!-- 配置事务管理器，依赖于数据源 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-	    <property name="basePackage" value="com.whc.noteserver.dao"></property>
+	    <property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
 	<!-- 注册事务注解驱动 -->

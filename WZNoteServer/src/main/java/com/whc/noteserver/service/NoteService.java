@@ -7,6 +7,8 @@ import com.whc.noteserver.param.NoteParam;
 import com.whc.noteserver.result.NoteResult;
 
 public interface NoteService {
+	
+	public List<NoteResult> getNoteForeach(List<String> id);
 
 	public int getCount(NoteParam param);
 

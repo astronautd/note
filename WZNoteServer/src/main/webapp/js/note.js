@@ -5,36 +5,7 @@ layui.use(['laypage', 'layer', 'table','jquery'], function(){
   ,table = layui.table //表格
   ,$=layui.jquery //jquery
 
-  
-  
-  //执行一个 table 实例
-  table.render({
-    elem: '#demo'
-    ,url: 'note/getnote.do' //数据接口
-    ,title: '笔记表'
-    ,page: true //开启分页
-    ,where: {userid: getCookie("userid")}
-    ,toolbar: 'true' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-    ,totalRow: true //开启合计行
-    ,parseData: function(res){ //res 即为原始返回的数据
-        return {
-          "code": res.state==1?0:-1, //解析接口状态
-          "msg": res.message, //解析提示文本
-          "count": res.data.count, //解析数据长度
-          "data": res.data.list //解析数据列表
-        };
-      }
-    ,cols: [[ //表头
-      {type: 'checkbox', fixed: 'left'}
-      ,{field: 'id', title: 'ID',hide:'true'}
-      ,{field: 'name', title: '笔记名称'}
-      ,{field: 'notebooksname', title: '所属笔记本'}
-      ,{field: 'content', title: '笔记内容'}
-      ,{field: 'addtime', title: '添加时间',templet:'<div>{{layui.util.toDateString(d.addtime)}}</div>'}
-      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
-    ]]
-  });
-  
+  initTable();
   
   //监听行工具事件
   table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
@@ -137,5 +108,39 @@ layui.use(['laypage', 'layer', 'table','jquery'], function(){
 		}); 
   });
   
+  $('#searchnote').on('click',function(){
+	  initTable();
+  })
+  //初始化表格
+  function initTable(){
+	//执行一个 table 实例
+	  table.render({
+	    elem: '#demo'
+	    ,url: 'note/getnote.do' //数据接口
+	    ,title: '笔记表'
+	    ,page: true //开启分页
+	    ,where: {userid: getCookie("userid"),content:$('#content').val()}
+	    ,toolbar: 'true' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+	    ,totalRow: true //开启合计行
+	    ,parseData: function(res){ //res 即为原始返回的数据
+	        return {
+	          "code": res.state==1?0:-1, //解析接口状态
+	          "msg": res.message, //解析提示文本
+	          "count": res.data.count, //解析数据长度
+	          "data": res.data.list //解析数据列表
+	        };
+	      }
+	    ,cols: [[ //表头
+	      {type: 'checkbox', fixed: 'left'}
+	      ,{field: 'id', title: 'ID',hide:'true'}
+	      ,{field: 'name', title: '笔记名称'}
+	      ,{field: 'notebooksname', title: '所属笔记本'}
+	      ,{field: 'content', title: '笔记内容'}
+	      ,{field: 'addtime', title: '添加时间',templet:'<div>{{layui.util.toDateString(d.addtime)}}</div>'}
+	      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
+	    ]]
+	  });
+	  
+  }
 
 });

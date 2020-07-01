@@ -7,6 +7,8 @@ import com.whc.noteserver.param.NoteParam;
 import com.whc.noteserver.result.NoteResult;
 
 public interface NoteDao {
+	
+	public List<NoteResult> getNoteForeach(List<String> id);
 
 	/**
 	 * 获取记录数

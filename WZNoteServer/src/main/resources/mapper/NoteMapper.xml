@@ -8,14 +8,28 @@
 		select count(*) 
 		from note_t_notes notes,note_t_notebooks notebooks 
 		where notebooks.id=notes.notebookid and notebooks.isdelete=0 and notes.isdelete=0 and notebooks.userid=#{userid}
+		<if test="content!=null and content!=''">
+		    <bind name="pattern_content" value="'%'+content+'%'" />
+		    and content like #{pattern_content}
+		</if>
 	</select>
+	
+
+	<!-- <if test="content!=null and content!=''">
+		    and content like concat('%',#{content},'%')
+		</if> -->
 	
 	<select id="getNote"  resultType="com.whc.noteserver.result.NoteResult">
 		select notes.id,notes.content,notes.name,notes.addtime,notes.isdelete,notebooks.name as "notebooksname" 
 		from note_t_notes notes,note_t_notebooks notebooks 
 		where notebooks.id=notes.notebookid and notebooks.isdelete=0 and notes.isdelete=0 and notebooks.userid=#{userid} 
+		<if test="content!=null and content!=''">
+		    <bind name="pattern_content" value="'%'+content+'%'" />
+		    and content like #{pattern_content}
+		</if>
 		order by addtime desc limit #{page},#{limit} 
 	</select>
+	
 	
 	<insert id="addNote" parameterType="com.whc.noteserver.entity.Note">
 		insert into note_t_notes (id,name,addtime,isdelete,content,notebookid) values(#{id},#{name},#{addtime},#{isdelete},#{content},#{notebookid})
@@ -25,8 +39,24 @@
 		select id,name,addtime,isdelete,content,notebookid from note_t_notes  where id=#{id}
 	</select>
 	
-	<update id="updateNote" parameterType="com.whc.noteserver.entity.Note">
+	<!-- <update id="updateNote" parameterType="com.whc.noteserver.entity.Note">
 		update note_t_notes set name=#{name},content=#{content},notebookid=#{notebookid} where id=#{id}
+	</update> -->
+	
+	<update id="updateNote" parameterType="com.whc.noteserver.entity.Note">
+		update note_t_notes 
+		<set>
+		    <if test="name!=null and name!=''">
+		        name=#{name},
+		    </if>
+		    <if test="content!=null and content!=''">
+		        content=#{content},
+		    </if>
+		    <if test="notebookid!=null and notebookid!=''">
+		        notebookid=#{notebookid},
+		    </if>
+		</set>
+		 where id=#{id}
 	</update>
 	
 	<update id="deleteNote" parameterType="com.whc.noteserver.entity.Note">

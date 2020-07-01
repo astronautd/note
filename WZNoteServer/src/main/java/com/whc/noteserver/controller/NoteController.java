@@ -1,5 +1,6 @@
 package com.whc.noteserver.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +35,6 @@ public class NoteController {
 	public JsonResult getNote(NoteParam param) {
 
 		param.setPage((param.getPage() - 1) * param.getLimit());
-		// System.out.println("page:"+page+" limit:"+limit);
 		List<NoteResult> list = noteService.getNote(param);
 		int count = noteService.getCount(param);
 		// 构建一个对象
@@ -44,7 +44,7 @@ public class NoteController {
 
 		return new JsonResult(JsonResult.STATE_SUCCESS, "", lp);
 	}
-
+	
 	/**
 	 * 添加笔记
 	 * 

@@ -19,7 +19,22 @@ body {
 </style>
 </head>
 <body>
-	<button id="addnote" type="button" class="layui-btn layui-btn-normal">添加</button>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <input type="text" id="name" name="name" autocomplete="off" placeholder="请输入名称" class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <input type="text" id="content" name="content" autocomplete="off" placeholder="请输入内容" class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <button id="searchnote" type="button" class="layui-btn layui-btn-normal">搜索</button>
+        </div>
+        <div class="layui-inline">
+	        <button id="addnote" type="button" class="layui-btn layui-btn-normal">添加</button>
+	    </div>
+	</div>
+	
+	
 	<table class="layui-hide" id="demo" lay-filter="test"></table>
 	<script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
